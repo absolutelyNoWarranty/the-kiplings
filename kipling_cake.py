@@ -96,12 +96,6 @@ while True:
     for _ in range(50):
         offspring.append(randomChoice(parents).mix(randomChoice(parents)).bake())
     
-    #print "Start"
-    #for p in pool: print p
-    #print "End"
-    #for c in offspring: print c
-
-            
     pool[:]=offspring
     del parents[:]
     del offspring[:]
