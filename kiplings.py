@@ -72,11 +72,15 @@ def mate(a, b):
 		cake_jr.append(b[midpoint + i])
 	return cake_jr
 	
+	
 # Initialisation
+num_iters = 0
 for i in range(10):
 	pool.append(make())
 	
 while True:
+	print pool
+	print '------------------'
 	total_score = calculate_total(pool)
 	# Add the members of the population to the parents pool by probablility
 	for i in range(len(pool)):
@@ -86,6 +90,7 @@ while True:
 				print "\n\n"
 				print "Correct Member Found! \t"
 				print pool[i]
+				print num_iters
 				sys.exit()
 			parents.append(pool[i])
 	
@@ -98,5 +103,4 @@ while True:
 	del offspring[:]
 	
 	print pool
-		
-	
+	num_iters += 1
