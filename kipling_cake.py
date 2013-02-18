@@ -1,4 +1,5 @@
-from random import randint, random, choice as randomChoice
+import sys
+from random import randint, random, choice as randomly_choose_cake
 from math import exp
 
 class Cake(object):
@@ -52,17 +53,20 @@ class Cake(object):
     def __str__(self):
         return str(self.ingredients)
     
-# The secret cake
+    def __repr__(self):
+        return self.__str__()
+    
+# Miss Kipling's secret cake
 SECRET = Cake(255, 255, 255, 4)
         
-# Pool
-pool = []
+# Bakery - A place to store cakes! The population of cakes.
+bakery = []
 
 # Parents
 parents = []
 
-# Offspring
-offspring = []
+# Cupcakes - The "children" of two cakes
+cupcakes = []
 
 # Scoring
 total_score = 0
@@ -76,29 +80,29 @@ def calculate_total(cakes):
 # Initialisation
 num_iters = 0
 for i in range(10):
-    pool.append(Cake())
+    bakery.append(Cake())
     
 while True:
-    total_score = calculate_total(pool)
-    # Add the members of the population to the parents pool by probablility
-    for i in range(len(pool)):
-        for j in range(pool[i].fitness(SECRET)):
-            if pool[i].fitness(SECRET) == 148:
-                print pool
+    total_score = calculate_total(bakery)
+    # Add the members of the population to the parents bakery by probablility
+    for i in range(len(bakery)):
+        for j in range(bakery[i].fitness(SECRET)):
+            if bakery[i].fitness(SECRET) == 148:
+                print bakery
                 print "\n\n"
                 print "Correct Member Found! \t"
-                print pool[i]
+                print bakery[i]
                 print num_iters    
                 sys.exit()
-            parents.append(pool[i])
+            parents.append(bakery[i])
     
     # Pick 10 random parents and mate them
     for _ in range(50):
-        offspring.append(randomChoice(parents).mix(randomChoice(parents)).bake())
+        cupcakes.append(randomly_choose_cake(parents).mix(randomly_choose_cake(parents)).bake())
     
-    pool[:]=offspring
+    bakery[:]=cupcakes
     del parents[:]
-    del offspring[:]
+    del cupcakes[:]
     num_iters+=1
     
 
